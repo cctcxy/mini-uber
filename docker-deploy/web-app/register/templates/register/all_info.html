@@ -1,0 +1,22 @@
+{% extends "register/base.html" %}
+{%block content%}
+    <h1>{{user.username}}</h1>
+    
+    {% for req in r_requests %}
+        {% if req.owner == user.username%}
+            <article class="media content-section">
+                <div class="media-body">
+                <div class="article-metadata">
+                <p class="article-content">request owner: {{req.owner}}</p>
+                <p class="article-content">destination: {{req.destination}}</p>
+                <p class="article-content">vehicle: {{req.vehicle}}</p>
+                <p class="text-muted">arrival_time: {{ req.arrival_time|date:"F d, Y" }}</p>
+                <p class="article-content">is_shared: {{req.is_shared}}</p>
+                <p class="article-content">is_confirmed: {{req.is_confirmed}}</p>
+                <p class="article-content">is_completed: {{req.is_completed}}</p>
+                </div>
+            </article>
+        {% endif %}
+    {% endfor %}
+
+{% endblock content %}

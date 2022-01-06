@@ -1,0 +1,56 @@
+{% extends "register/base_share.html" %}
+{%block content%}
+    
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+
+			<form method="get">
+				{{myFilter.form}}
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+
+		</div>
+	</div>
+	
+</div>
+<br>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+                {% for req in search_reqests %}
+                    {%if not req.is_completed %}
+                        {%if req.is_sharable %}
+                            <article class="media content-section">
+                                <div class="media-body">
+                                <div class="article-metadata">
+                                <a class="article-title" href ="{% url 'register-detail' req.id%}" style="color:#0000FF;">request id: {{req.id}}</a>
+                                <h1></h1>
+                                <a class="article-title" href ="{% url 'share-confirm' req.id%}" style="color:#0000FF;">Be sharer(s) of request {{req.id}}</a>
+                                
+                                <p class="article-content">request owner: {{req.owner}}</p>
+                                <p class="article-content">destination: {{req.destination}}</p>
+                                <p class="article-content">vehicle: {{req.vehicle}}</p>
+                                <p class="text-muted">number_in_party: {{ object.number_in_party }}</p>
+                                <p class="text-muted">number_be_shared: {{ object.number_be_shared }}</p>
+                                <p class="text-muted">arrival_time: {{ req.arrival_time|date:"F d, Y" }}</p>
+                                <p class="article-content">driver: {{req.driver}}</p>
+                                <p class="article-content">special require: {{req.special_require}}</p>
+                                </div>
+                            </article>
+                        {%endif%}
+                    {%endif%}
+
+    {% endfor %}
+
+				
+
+			</table>
+		</div>
+	</div>
+</div>   
+               
+{% endblock content %}

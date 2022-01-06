@@ -1,0 +1,8 @@
+1.
+when successfully register as a driver, would alear success:"Registration Succeed", but the render of the page is misunderstanding to shou "You haven't register as a user". It would be fixed if click on "homepage" and everything turned right.
+2.
+update vehicle page would print every messages that is not print, it should be "You have already registered your vehicle, please update vehicle information if needed!" but sometimes wierd (i.e. it would show create acount <username> if a new user is created)
+3.
+In the sharer role, every time I look into the detail of the result ride requests returned by a search, I need to use the url links in the top to return back to search page, which means I need to search again. 
+4.
+If trying to complete an unconfirmed ride via URL, you would be redirected search page and alear a warning:"You can't complete an unconfirmed ride! Please see open rides for you!" However, it has already been changed in database in background, which is super dangerous.

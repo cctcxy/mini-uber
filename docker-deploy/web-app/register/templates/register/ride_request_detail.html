@@ -1,0 +1,24 @@
+{% extends "register/base.html" %}
+{%block content%}
+
+   
+    <article class="media content-section">
+        <div class="media-body">
+        <div class="article-metadata">
+        <a class="article-title" >request id: {{object.id}}</a>
+        <p class="article-content">request owner: {{object.owner}}</p>
+        <p class="article-content">destination: {{object.destination}}</p>
+        <p class="article-content">vehicle: {{object.vehicle}}</p>
+        <p class="text-muted">number_in_party: {{ object.number_in_party }}</p>
+        <p class="text-muted">number_be_shared: {{ object.number_be_shared }}</p>
+        <p class="text-muted">arrival_time: {{ object.arrival_time|date:"F d, Y" }}</p>
+        <p class="article-content">is_sharable: {{object.is_sharable}}</p>
+        <p class="article-content">is_confirmed: {{object.is_confirmed}}</p>
+        <p class="article-content">is_completed: {{object.is_completed}}</p>
+        <p class="article-content">driver: {{object.driver}}</p>
+        <p class="article-content">sharer: {{object.sharer}}</p>
+        <p class="article-content">special require: {{object.special_require}}</p>
+        </div>
+    </article>
+
+{% endblock content %}

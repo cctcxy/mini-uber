@@ -1,0 +1,21 @@
+{% extends "register/base_drive.html" %}
+{%load crispy_forms_tags %}
+{%block content%}
+    <div class="content-section">
+      <form method="POST">
+        {% if error %}
+            <div class="alert alert-danger">
+                <strong>{{ error }}</strong>
+            </div>
+        {% endif %}
+        {% csrf_token %}
+        <fieldset class="form-group">
+          <legend class="border-bottom mb-4">Register as a driver</legend>
+            {{ form|crispy }}
+        </fieldset>
+          <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">submit</button>
+          </div>
+      </form>
+    </div>
+{% endblock content %}

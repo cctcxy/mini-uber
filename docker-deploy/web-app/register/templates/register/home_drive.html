@@ -1,0 +1,15 @@
+{% extends "register/base_drive.html" %}
+{%block content%}
+    {%if be_driver %}
+       <div class="alert alert-success">
+                <strong>{{ be_driver }}</strong>
+       </div>
+    {% endif%}
+    {% if is_driver%}
+    <h1>Hello, driver: {{user}}</h1>
+    {% else %}
+    <h1>You haven't registered as a driver!</h1>
+    <a class="article-title" href ="{% url 'driver_create'%}" style="color:#0000FF;">Register as a driver!</a>
+    {%endif%}
+               
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends "register/base_drive.html" %}
+{%block content%}
+    <h1> You are browsing the detail of Ride Request {{object.id}}</h1>
+    <article class="media content-section">
+        <div class="media-body">
+        <div class="article-metadata">
+            <p class="article-content">request owner: {{object.owner}} {{object.id}}</p>
+            <p class="article-content">destination: {{object.destination}}</p>
+            <p class="article-content">vehicle: {{object.vehicle}}</p>
+            <p class="text-muted">arrival_time: {{ object.arrival_time|date:"F d, Y" }}</p>
+            <p class="article-content">is_shared: {{object.is_shared}}</p>
+            <p class="article-content">Confirmed: {{object.is_confirmed}}</p>
+            <p class="article-content">Completed: {{object.is_completed}}</p>
+            {% if not object.is_completed%}
+            <button><a href="{% url 'driver_completed' object.id %}">Complete</a></button>
+<!--            <button><a href="">Complete</a></button>-->
+            {% endif%}
+        </div>
+        </div>
+    </article>
+
+
+{% endblock content %}

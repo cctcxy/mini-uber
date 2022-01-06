@@ -1,0 +1,50 @@
+{% extends "register/base_drive.html" %}
+{% block title %}
+Search Open Rides as a Driver
+{% endblock %}
+{%block content%}
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title> Search Open Rides as a Driver </title>
+</head>
+<body>
+	
+	<h3> Hi {{user}}, welcome! </h3>
+    <br>
+{% if rides_list %}
+    <ol> <h4> The open rides available for you:</h4>
+    {% for ride in rides_list %}
+        <article class="media content-section">
+            <li>
+    <!--     Do not need to display detail of the ride if not confirmed (by this driver)       -->
+                <ul> Ride id: {{ ride.id }}
+                    <li> Order from: {{ride.owner}}, {{ride.number_in_party}} persons</li>
+                    <li> To: {{ride.destination}}</li>
+<!--                    if shared, show shared info-->
+                    {% if ride.number_be_shared > 0 %}
+                    <li> Shared by: {{ride.sharer}}, {{ride.number_be_shared}} persons</li>
+                    {% endif %}
+                    <li> Arrival time: No later than {{ride.arrival_time}}</li>
+                    <li> Other information: {{tide.special_require}}</li>
+                </ul>
+                <button class="btn btn-outline-info" type="submit"> <a href="{% url 'driver_confirmed' ride.id %}"> Confirm </a> </button>
+            </li>
+        
+        </article>
+    {% endfor %}
+    </ol>
+{% else %}
+    <p>No rides are available.</p>
+{% endif %}
+{% if message %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags}}">
+      {{message}}
+    </div>
+    {% endfor %}
+{% endif %}
+<!--    <a href="{% url 'driver_search'%}">Back</a>-->
+</body>
+</html>
+{% endblock content %}

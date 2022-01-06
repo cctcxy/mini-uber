@@ -1,0 +1,38 @@
+{% extends "register/base_drive.html" %}
+{%block content%}
+    {% if messages%}
+    <div class="alert alert-danger">
+        {% for message in messages %}
+        <strong>{{ message }}</strong>
+        <br>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% for ride in d_request %}
+        {%if ride.driver == user.username%}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <ul><a href="{% url 'driver_details' ride.id %}"> Ride id : {{ride.id}}</a>
+                        <li class="article-content">Ride owner: {{ride.owner.username}}</li>
+                        <li class="article-content">destination: {{ride.destination}}</li>
+                        <li class="article-content">vehicle: {{ride.vehicle}}</li>
+                        <li class="text-muted">Arrival time: {{ ride.arrival_time|date:"F d, Y" }}</li>
+                        <li class="article-content">is_shared: {{ride.is_shared}}</li> 
+                        {% if ride.sharer != '' %}
+                        <li class="article-content"> Sharer: {{ride.sharer.username}}</li>
+                        {% endif %}
+                        <li class="article-content">is_completed: {{ride.is_completed}}</li>
+                        {% if not ride.is_completed %}
+                        <button type="submit"><a href="{% url 'driver_completed' ride.id %}"> Complete </a></button>
+                        {% endif %}    
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        {%endif%}
+
+    {% endfor %}
+{% endblock content %}
